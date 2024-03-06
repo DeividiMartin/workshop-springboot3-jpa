@@ -43,7 +43,6 @@ public class Order implements Serializable {
 
 		}
 
-	
 
 
 	public Order(Long id, Instant moment,OrderStatus orderStatus, User client) {
