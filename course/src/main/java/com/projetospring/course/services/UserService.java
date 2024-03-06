@@ -11,12 +11,16 @@ import com.projetospring.course.repositories.UserRepository;
 @Service
 public class UserService {
 	@Autowired
-	private UserRepository repostory; 
+	private UserRepository repository; 
 	public List<User> findAll(){
-		return repostory.findAll();
+		return repository.findAll();
 	}
 	 public User findById(Long id) {
-		Optional<User> obj = repostory.findById(id);
+		Optional<User> obj = repository.findById(id);
 		return obj.get();
+	 }
+	 
+	 public User insert(User obj) {
+		 return repository.save(obj);
 	 }
 }
