@@ -39,14 +39,20 @@ public class UserService {
 	 }
 	 
 	 public User update (Long id, User obj) {
-		 User entity = repository.getReferenceById(id);
-		 updateData(entity,obj);
-		 return repository.save(entity);
+			try {
+				User entity = repository.getReferenceById(id);
+				updateData(entity,obj);
+				return repository.save(entity);
+			}catch (RuntimeException e) {
+				throw new ResourceNotFoundException(id);
+			}
 		 
 	 }
 	private void updateData(User entity, User obj) {
-		entity.setName(obj.getName());
-		entity.setEmail(obj.getEmail());
-		entity.setPhone(obj.getPhone());
-	}
+	
+			entity.setName(obj.getName());
+			entity.setEmail(obj.getEmail());
+			entity.setPhone(obj.getPhone());
+		
+		}
 }
