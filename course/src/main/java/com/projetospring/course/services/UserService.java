@@ -12,6 +12,8 @@ import com.projetospring.course.entities.User;
 import com.projetospring.course.repositories.UserRepository;
 import com.projetospring.course.services.exceptions.DatabaseException;
 import com.projetospring.course.services.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 @Service
 public class UserService {
 	@Autowired
@@ -43,7 +45,7 @@ public class UserService {
 				User entity = repository.getReferenceById(id);
 				updateData(entity,obj);
 				return repository.save(entity);
-			}catch (RuntimeException e) {
+			}catch (EntityNotFoundException e) {
 				throw new ResourceNotFoundException(id);
 			}
 		 
